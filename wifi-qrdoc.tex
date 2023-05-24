@@ -1,0 +1,37 @@
+\documentclass{article}
+
+\usepackage{arev}
+\usepackage{qrcode}
+
+\input{mynw}
+
+% https://www.wi-fi.org/download.php?file=/sites/default/files/private/WPA3_Specification_v3.0.pdf#page=24
+
+% WIFI-qr = "WIFI:" [type ";"] [trdisable ";"] ssid ";" [hidden ";"] [id ";"] [password ";"] [public-key ";"] ";"
+% type = "T:" *(unreserved) ; security type
+% trdisable = "R:" *(HEXDIG) ; Transition Disable value
+% ssid = "S:" *(printable / pct-encoded) ; SSID of the network
+% hidden = "H:true" ; when present, indicates a hidden (stealth) SSID is used
+% id = "I:" *(printable / pct-encoded) ; UTF-8 encoded password identifier, present if the password has an SAE password identifier
+% password = "P:" *(printable / pct-encoded) ; password, present for password-based authentication
+% public-key = "K:" *PKCHAR ; DER of ASN.1 SubjectPublicKeyInfo in compressed form and encoded in "base64" as per [6], present when the network supports SAE-PK, else absent
+% printable = %x20-3a / %x3c-7e ; semi-colon excluded
+% PKCHAR = ALPHA / DIGIT / %x2b / %x2f / %x3d
+
+\begin{document}
+	\thispagestyle{empty}
+
+	\framebox{
+		\parbox[t][6.9cm]{6cm}{
+			\vspace{0.3cm}
+
+			\centering{\bfseries{\Large{\mynwid}}}
+			\vspace{0.3cm}
+
+			\qrcode[height=5cm]{WIFI:T:WPA;S:\mynwid;P:\mynwkey}
+
+			\vspace{0.3cm}
+			\centering{\bfseries{\mynwkey}}
+		}
+	}
+\end{document}
