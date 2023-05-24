@@ -10,12 +10,14 @@ build: wifi-qrdoc.pdf
 wifi-qrdoc.pdf: mynw.tex
 
 clean:
-	rm -f mynw.tex wifi-qrdoc.{aux,dvi,log,pdf}
+	rm -f mynw.tex wifi-qrdoc.{aux,dvi,log,pdf} .secure
 
 mynw.tex:
-	touch $@
-	chmod 0600 $@
 	perl -lne 'm!^\s*#! && next; m!nwid\s+"(.*?)"! && print "\\def\\mynwid{$$1}"; m!wpakey\s+"(.*?)"! && print "\\def\\mynwkey{$$1}"' < /etc/hostname.${WLANIF} >> $@
 
-.tex.pdf:
+.secure:
+	chmod 0700 .
+	touch $@
+
+.tex.pdf: .secure
 	xelatex $<
