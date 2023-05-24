@@ -10,4 +10,4 @@ Install texlive and run `make`.
 
 - Assumes user is in group `wheel` to access `hostname.if`
 - Changes permissions of local directory to user only access to avoid exposing wifi credentials to others
-- Stores wifi credentials accessible to others, run `make clean` to remove
+- Stores wifi credentials locally, run `make clean` to remove
