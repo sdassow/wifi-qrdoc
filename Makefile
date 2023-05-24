@@ -1,4 +1,4 @@
-.SUFFIXES: .tex .pdf
+.SUFFIXES: .tex .pdf .png
 
 # use egress interface by default
 WLANIF != ifconfig egress | perl -lne 'm!^(\w+\d+):! && print $$1'
@@ -21,3 +21,6 @@ mynw.tex:
 
 .tex.pdf: .secure
 	xelatex $<
+
+.pdf.png:
+	convert -quality 90 -background "rgb(255,255,255)" -flatten $< $@
