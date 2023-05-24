@@ -9,6 +9,9 @@ build: wifi-qrdoc.pdf
 
 wifi-qrdoc.pdf: mynw.tex
 
+clean:
+	rm -f mynw.tex wifi-qrdoc.{aux,dvi,log,pdf}
+
 mynw.tex:
 	touch $@
 	chmod 0600 $@
